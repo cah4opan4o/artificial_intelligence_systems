@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
-# import seaborn as sns
+import seaborn as sns
 
 if __name__ == "__main__":
     # Загружаем данные из конкретного листа
@@ -57,16 +57,16 @@ if __name__ == "__main__":
     plt.ylabel('High')
     plt.title('Type of land mine')
     
-    plt.figure(2)
-    mine_Null = plt.plot(H[0:46]+H[225:248],S[0:46]+S[225:248],'ro',label='Null')
-    Anti_Tank, = plt.plot(H[46:93]+H[249:271],S[46:93]+S[249:271],'g^',label='Anti Tank')
-    Anti_personnel, = plt.plot(H[94:137]+H[272:293],S[94:137]+S[272:293],'bs',label='Anti personnel')
-    Booby_Trapped = plt.plot(H[138:181]+H[294:315],S[138:181]+S[294:315],'k*',label='booby trapped')
-    M14_Anti_personnel = plt.plot(H[182:224]+H[316:],S[182:224]+S[316:],'mD',label='M14 anti personnel')
-    plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
-    plt.xlabel('high')
-    plt.ylabel('soil Type')
-    plt.title('Type of land mine')
+    # plt.figure(2)
+    # mine_Null = plt.plot(H[0:46]+H[225:248],S[0:46]+S[225:248],'ro',label='Null')
+    # Anti_Tank, = plt.plot(H[46:93]+H[249:271],S[46:93]+S[249:271],'g^',label='Anti Tank')
+    # Anti_personnel, = plt.plot(H[94:137]+H[272:293],S[94:137]+S[272:293],'bs',label='Anti personnel')
+    # Booby_Trapped = plt.plot(H[138:181]+H[294:315],S[138:181]+S[294:315],'k*',label='booby trapped')
+    # M14_Anti_personnel = plt.plot(H[182:224]+H[316:],S[182:224]+S[316:],'mD',label='M14 anti personnel')
+    # plt.legend(bbox_to_anchor=(1.05, 1), loc=2, borderaxespad=0.)
+    # plt.xlabel('high')
+    # plt.ylabel('soil Type')
+    # plt.title('Type of land mine')
     
     plt.figure(3)
     mine_Null = plt.plot(V[0:46]+V[225:248],S[0:46]+S[225:248],'ro',label='Null')
@@ -114,22 +114,30 @@ if __name__ == "__main__":
     # corr_matrix = df.corr()
 
     # # Визуализируем корреляционную матрицу
-    # plt.figure(figsize=(8, 6))
+    # plt.figure(6,figsize=(8, 6))
     # sns.heatmap(corr_matrix, annot=True, cmap="coolwarm", fmt=".2f", linewidths=0.5)
     # plt.title("Корреляционная матрица")
     
-#     plt.figure(6)
-#     plt.subplot(2,2,1)
-#     df["V"].hist()
-#     plt.title("Voltage")
-#     plt.subplot(2,2,2)
-#     df["H"].hist()
-#     plt.title("High")
-#     plt.subplot(2,2,3)
-#     df["S"].hist()
-#     plt.title("Soil Type")
-#     plt.subplot(2,2,4)
-#     df["M"].hist()
-#     plt.title("Mine Type")
+    plt.figure(6)
+    sns.heatmap(df.corr(), cmap=plt.cm.Blues)
+    plt.title('Матрица Корреляции')
+    
+    plt.figure(7)
+    plt.subplot(2,2,1)
+    df["V"].hist(bins=100,density=True)
+    plt.title("Voltage")
+    plt.subplot(2,2,2)
+    df["H"].hist(bins=50,density=True)
+    plt.title("High")
+    plt.subplot(2,2,3)
+    df["S"].hist(bins=50,density=True)
+    plt.title("Soil Type")
+    plt.subplot(2,2,4)
+    df["M"].hist(bins=50,density=True)
+    plt.title("Mine Type")
+
+    feats = ['V','H','S']
+    plt.figure(8)
+    sns.pairplot(df[feats + ['M']], hue='M')
     
     plt.show()
