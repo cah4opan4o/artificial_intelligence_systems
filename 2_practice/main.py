@@ -5,7 +5,7 @@ import seaborn as sns
 
 if __name__ == "__main__":
     # Загружаем данные из конкретного листа
-    df = pd.read_excel("D:\\Github\\artificial_intelligence_systems\\1_practice\\land mine\\Mine_Dataset.xls", sheet_name="Normalized_Data", engine="xlrd")
+    df = pd.read_excel("D:\\Github\\artificial_intelligence_systems\\2_practice\\land mine\\Mine_Dataset.xls", sheet_name="Normalized_Data", engine="xlrd")
 
     data = df.to_numpy()
     
