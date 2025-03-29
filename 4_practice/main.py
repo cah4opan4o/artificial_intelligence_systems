@@ -20,9 +20,9 @@ if __name__ == "__main__":
     print(dataY.head())
 
     # Матрица корреляции
-    # plt.figure(figsize=(10, 8))
-    # sns.heatmap(data.corr(), cmap=plt.cm.Blues, annot=True, fmt='.2f')
-    # plt.title('Матрица Корреляции')
+    plt.figure(figsize=(10, 8))
+    sns.heatmap(dataX.corr(), cmap=plt.cm.Blues, annot=True, fmt='.2f')
+    plt.title('Матрица Корреляции')
 
     # Разделение данных на обучающую и тестовую выборки
     X_train, X_holdout, y_train, y_holdout = train_test_split(
