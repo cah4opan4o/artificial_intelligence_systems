@@ -5,12 +5,22 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 
-file_path = 'D:\\Github\\artificial_intelligence_systems\\6_practice\\diabetes_dataset.csv'
+# GRE Score – баллы за тест GRE (Graduate Record Examination).
+# TOEFL Score – баллы за TOEFL (тест на знание английского языка).
+# University Rating – рейтинг университета, куда подаётся кандидат.
+# SOP – сила мотивационного письма (Statement of Purpose).
+# LOR – сила рекомендательных писем (Letter of Recommendation).
+# CGPA – средний балл (Cumulative Grade Point Average).
+# Research – наличие или отсутствие исследовательского опыта (1 – есть, 0 – нет).
+# Chance of Admit – вероятность поступления.
+
+file_path = 'D:\\Github\\artificial_intelligence_systems\\6_practice\\Admission_Predict.csv'
 dataset = pd.read_csv(file_path)
 print(dataset.head())
 
-dataX = dataset.iloc[:,:1].values
-dataY = dataset.iloc[:,-1].values
+dataX = dataset[['GRE Score']].values  # Признак (независимая переменная)
+dataY = dataset['Chance of Admit '].values  # Целевая переменная
+
 print('признаки\n',dataX[:5])
 print('зависимая\n',dataY[:5])
 
